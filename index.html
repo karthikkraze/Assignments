@@ -1,0 +1,55 @@
+<html>
+	<font size="8" color="green">Final test lab</font><br><br>
+	Number of rows: <input type="text" id="t1" /><br><br>
+	Number of cols: <input type="text" id="t2" /><br><br>
+
+	<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+
+	<button id="b2" onclick="addColumn()">Add Column</button>
+
+	<button id="b3" onclick="addRow()">Add Row</button>
+	<div id = "tableContainer"></div>
+		
+	<script language="javascript">
+		
+    function generateTable() {
+      const rowInput = parseInt(document.getElementById("t1").value);
+      const colInput = parseInt(document.getElementById("t2").value);
+      const tableContainer = document.getElementById("tableContainer");
+      tableContainer.innerHTML = ""; // Clear existing table
+
+      const table = document.createElement("table");
+      for (let i = 0; i < rowInput; i++) {
+        const row = table.insertRow();
+        for (let j = 0; j < colInput; j++) {
+          const cell = row.insertCell();
+          cell.textContent = `Row ${i + 1}, Col ${j + 1}`;
+        }
+      }
+
+      tableContainer.appendChild(table);
+    }
+
+    function addColumn() {
+      const table = document.querySelector("table");
+      const rowCount = table.rows.length;
+
+      for (let i = 0; i < rowCount; i++) {
+        const cell = table.rows[i].insertCell();
+        cell.textContent = `Row ${i + 1}, Col ${table.rows[i].cells.length}`;
+      }
+    }
+
+    function addRow() {
+      const table = document.querySelector("table");
+      const newRow = table.insertRow();
+      const colCount = table.rows[0].cells.length;
+
+      for (let i = 0; i < colCount; i++) {
+        const cell = newRow.insertCell();
+        cell.textContent = `Row ${table.rows.length}, Col ${i + 1}`;
+      }
+    }
+	</script>
+	</body>
+</html>
